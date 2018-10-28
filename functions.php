@@ -10,3 +10,5 @@
   }
 
 add_action('wp_enqueue_scripts', 'addCustomThemeStyles');
+
+add_theme_support( 'post-thumbnails' );
