@@ -9,6 +9,20 @@
     wp_enqueue_script('bootstrapjs', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '4.1.3', true);
   }
 
-add_action('wp_enqueue_scripts', 'addCustomThemeStyles');
+  add_action('wp_enqueue_scripts', 'addCustomThemeStyles');
 
-add_theme_support( 'post-thumbnails' );
+  // function register_my_menu() {
+  //   register_nav_menu('header_menu',_('Header Menu'));
+  // }
+  //
+  // add_action('init', 'register_my_menu');
+
+  function addCustomMenus() {
+    add_theme_support('menus');
+    register_nav_menu('header_nav', 'This is the navigation at the top of the page');
+    register_nav_menu('footer_nav', 'This is the navigation at the bottom of the page');
+  }
+
+  add_action('init', 'addCustomMenus');
+
+  add_theme_support( 'post-thumbnails' );
