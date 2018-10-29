@@ -6,5 +6,5 @@
         <?php wp_head(); ?>
     </head>
     <body>
-      <h3>This is only used on the front page</h3>
+      <!-- <h3>This is only used on the front page</h3> -->
       <?php wp_nav_menu( array ( 'theme_locaiton' => 'header_nav', 'menu_id' => 'header_nav' ) ); ?>
