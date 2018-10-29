@@ -1,3 +1,7 @@
+body {
+  background-color: #dfe4ea;
+}
+
 #header_nav {
   background-color: lightblue;
   list-style-type: none;
