@@ -27,3 +27,5 @@
   add_action('init', 'addCustomMenus');
 
   add_theme_support( 'post-thumbnails' );
+
+  add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
