@@ -31,3 +31,9 @@
   add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat' ) );
 
   require get_parent_theme_file_path('./addons/custom_posts_types.php');
+
+  function addCustomLogo() {
+    add_theme_support('custom-logo');
+  }
+
+  add_action('init', 'addCustomLogo');

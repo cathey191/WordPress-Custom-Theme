@@ -4,6 +4,19 @@
             <div class="row">
                 <div class="col">
                     <h1>Home Page</h1>
+                    <?php
+                      if ( function_exists('the_custom_logo') ) {
+                        the_custom_logo();
+                      }
+                    ?>
+                    <br>
+                    <?php
+                      $custom_logo = get_theme_mod('custom_logo');
+                      $logo_url = wp_get_attachment_image_url($custom_logo, 'thumbnail');
+                    ?>
+                    <?php if ($custom_logo): ?>
+                      <img src="<?= $logo_url ?>" alt="">
+                    <?php endif; ?>
                 </div>
                 <?php if(have_posts()): ?>
                     <div class="card-columns">
