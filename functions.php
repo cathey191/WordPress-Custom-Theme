@@ -33,7 +33,10 @@
   require get_parent_theme_file_path('./addons/custom_posts_types.php');
 
   function addCustomLogo() {
-    add_theme_support('custom-logo');
+    add_theme_support('custom-logo', array(
+      'height' => 150,
+      'width'=> 300
+    ));
   }
 
   add_action('init', 'addCustomLogo');
