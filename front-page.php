@@ -19,6 +19,12 @@
                     <?php endif; ?>
                 </div>
                 <?php if(have_posts()): ?>
+                  <ul id="sidebar">
+                  	<?php if ( ! dynamic_sidebar() ) : ?>
+                  		<li>{static sidebar item 1}</li>
+                  		<li>{static sidebar item 2}</li>
+                  	<?php endif; ?>
+                  </ul>
                     <div class="card-columns">
                         <?php while(have_posts()): the_post();?>
                           <?php get_template_part('content', get_post_format()); ?>
