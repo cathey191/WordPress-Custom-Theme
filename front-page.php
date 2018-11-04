@@ -18,22 +18,22 @@
                       <img src="<?= $logo_url ?>" alt="">
                     <?php endif; ?>
                 </div>
-                <?php if(have_posts()): ?>
-                  <ul id="sidebar">
-                  	<?php if ( ! dynamic_sidebar() ) : ?>
-                  		<li>{static sidebar item 1}</li>
-                  		<li>{static sidebar item 2}</li>
-                  	<?php endif; ?>
-                  </ul>
-                    <div class="card-columns">
-                        <?php while(have_posts()): the_post();?>
-                          <?php get_template_part('content', get_post_format()); ?>
-
-
-                        <?php endwhile; ?>
+                <div class="col">
+                  <?php if(have_posts()): ?>
+                      <div class="card-columns">
+                          <?php while(have_posts()): the_post();?>
+                            <?php get_template_part('content', get_post_format()); ?>
+                          <?php endwhile; ?>
+                      </div>
+                  <?php endif; ?>
+                </div>
+                <?php if( is_active_sidebar('front_page_sidebar') ): ?>
+                  <div class="col-4">
+                    <div id="frontPageSidebar" =>
+                      <?php dynamic_sidebar('front_page_sidebar'); ?>
                     </div>
+                  </div>
                 <?php endif; ?>
-
             </div>
         </div>
 

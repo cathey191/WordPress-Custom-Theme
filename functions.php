@@ -43,13 +43,13 @@
 
   function addSideBar() {
     register_sidebar( array(
-      'name' => __( 'Main Sidebar', 'textdomain'),
-      'id' => 'sidebar-1',
-      'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'textdomain' ),
-      'before_widget' => '<li id="%1$s" class="widget %2$s">',
-      'after_widget'  => '</li>',
-      'before_title'  => '<h2 class="widgettitle">',
-      'after_title'   => '</h2>'
+      'name' => 'Front Page Sidebar',
+      'id' => 'front_page_sidebar',
+      'description'   => 'This sidebar will be displayed on the front page', 'textdomain',
+      'before_widget' => '<div id="%1$s" class="widget %2$s customWidget">',
+      'after_widget'  => '</div>',
+      'before_title'  => '<h3 class="widgettitle">',
+      'after_title'   => '</h3>'
     ));
   }
 
