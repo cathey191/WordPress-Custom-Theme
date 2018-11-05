@@ -26,3 +26,11 @@ body {
 #header_nav li a:hover {
   background-color: #111;
 }
+
+#front_page_banner {
+  height: 50vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -54,3 +54,29 @@
   }
 
   add_action( 'widgets_init', 'addSideBar' );
+
+  register_default_headers(array(
+    'banner' => array(
+      'url' => get_template_directory_uri() . '/assets/images/defaultninja.jpg',
+      'thumbnail_url' => get_template_directory_uri() . '/assets/images/defaultninja.jpg',
+      'description' => 'Two ninjas playing'
+    )
+  ));
+
+  function addCustomHeader() {
+    $defaults = array(
+    	'default-image'          => get_template_directory_uri() . '/assets/images/defaultninja.jpg',
+    	'width'                  => 1280,
+    	'height'                 => 720,
+    	'flex-height'            => false,
+    	'flex-width'             => false,
+    	'uploads'                => true,
+    	'random-default'         => false,
+    	'header-text'            => true,
+    	'default-text-color'     => ''
+    );
+
+    add_theme_support( 'custom-header', $defaults );
+  }
+
+  add_action('init', 'addCustomHeader');
