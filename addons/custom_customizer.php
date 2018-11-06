@@ -1,6 +1,7 @@
 <?php
 
   function custom_theme_customizer( $wp_customize ) {
+    // Header Colouring
     $wp_customize->add_section('custom_theme_header_info', array(
       'title' => __('Header Styles', '18wdwu02customtheme'),
       'priority' => 20
@@ -26,6 +27,23 @@
       'label' => __('Colour', '18wdwu02customtheme'),
       'section' => 'custom_theme_header_info',
       'settings' => 'header_colour_setting'
+    )));
+
+    // Footer
+    $wp_customize->add_section('custom_theme_footer_section', array(
+      'title' => __('Footer', '18wdwu02customtheme'),
+      'priority' => 20
+    ));
+
+    $wp_customize->add_setting('footer_text_setting', array(
+      'default' => '',
+      'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'footer_text_control', array(
+      'label' => __('Footer Text', '18wdwu02customtheme'),
+      'section' => 'custom_theme_footer_section',
+      'settings' => 'footer_text_setting'
     )));
 
   }
