@@ -79,3 +79,5 @@
   }
 
   add_action('init', 'addCustomHeader');
+
+  require get_parent_theme_file_path('./addons/custom_customizer.php');

@@ -6,4 +6,8 @@
         <?php wp_head(); ?>
     </head>
     <body>
-    <?php wp_nav_menu( array ( 'theme_locaiton' => 'header_nav', 'menu_id' => 'header_nav' ) ); ?>
+    <?php wp_nav_menu( array (
+      'theme_locaiton' => 'header_nav',
+      'menu_id' => 'header_nav',
+      'container_class' => 'header-colour'
+    ) ); ?>

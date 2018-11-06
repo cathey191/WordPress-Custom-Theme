@@ -7,7 +7,11 @@
     </head>
     <body>
       <!-- <h3>This is only used on the front page</h3> -->
-      <?php wp_nav_menu( array ( 'theme_locaiton' => 'header_nav', 'menu_id' => 'header_nav' ) ); ?>
+      <?php wp_nav_menu( array (
+        'theme_locaiton' => 'header_nav',
+        'menu_id' => 'header_nav',
+        'container_class' => 'header-colour' 
+      ) ); ?>
 
         <?php if (get_header_image() == false) {
           $image = get_template_directory_uri() . '/assets/images/defaultninja.jpg';
