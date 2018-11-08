@@ -36,25 +36,33 @@
 
     $fields = $metaBoxes[$args['id']]['fields'];
 
+    $output = '<input type="hidden" name="post_format_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'">';
+
     if (!empty($fields)) {
       foreach ($fields as $id => $field) {
         switch ($field['type']) {
           case 'text':
             $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
-            $output .= '<input type="text" name="'.$id.'" style="width:100%">';
+            $output .= '<input type="text" name="'.$id.'" class="customField">';
             break;
           case 'number':
             $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
-            $output .= '<input type="number" name="'.$id.'" style="width:100%">';
+            $output .= '<input type="number" name="'.$id.'" class="customField">';
             break;
           default:
             $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
-            $output .= '<input type="text" name="'.$id.'" style="width:100%">';
+            $output .= '<input type="text" name="'.$id.'" class="customField">';
             break;
         }
       }
     }
-
     echo $output;
-
   }
+
+  function save_metaboxes($postID) {
+    global $metaBoxes;
+
+      
+  }
+
+  add_action('save_post', 'save_metaboxes');

@@ -12,6 +12,12 @@
 
   add_action('wp_enqueue_scripts', 'addCustomThemeStyles');
 
+  function add_admin_custom_styles () {
+    wp_enqueue_style('admin-style', get_template_directory_uri() . '/assets/css/admin.css', array(), '0.0.1', 'all');
+  }
+
+  add_action('admin_enqueue_scripts', 'add_admin_custom_styles');
+
   // function register_my_menu() {
   //   register_nav_menu('header_menu',_('Header Menu'));
   // }
@@ -81,4 +87,4 @@
   add_action('init', 'addCustomHeader');
 
   require get_parent_theme_file_path('./addons/custom_customizer.php');
-  require get_parent_theme_file_path('./addons/custom_fields.php'); 
+  require get_parent_theme_file_path('./addons/custom_fields.php');
