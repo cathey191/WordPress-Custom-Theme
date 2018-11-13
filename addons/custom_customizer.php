@@ -47,28 +47,41 @@
     )));
 
     // Featured Pages
-    $wp_customize->add_panel('Featured_Pages_Panel', array(
-      'title' => __('Featured Pages', '18wdwu02customtheme'),
+    $wp_customize->add_panel('Featured_post_Panel', array(
+      'title' => __('Featured Post', '18wdwu02customtheme'),
       'priority' => 30,
-      'description' => 'This panel will hold the featured pages section'
+      'description' => 'This panel will hold the featured post section'
     ));
 
+    $args = array(
+      'numberposts' => -1,
+    );
+
+    $allPosts = get_posts($args);
+
+    $options = array();
+    foreach ($allPosts as $singlePost) {
+      $options[$singlePost->ID] = $singlePost->post_title;
+    }
+
     for ($i=1; $i <= 2 ; $i++) {
-      $wp_customize->add_section('custom_theme_featured_page_'.$i, array(
-        'title' => __('Featured Page '.$i, '18wdwu02customtheme'),
+      $wp_customize->add_section('custom_theme_featured_post_'.$i, array(
+        'title' => __('Featured Post '.$i, '18wdwu02customtheme'),
         'priority' => 21,
-        'panel' => 'Featured_Pages_Panel'
+        'panel' => 'Featured_post_Panel'
       ));
 
-      $wp_customize->add_setting('featured_page_'.$i.'_setting', array(
+      $wp_customize->add_setting('featured_post_'.$i.'_setting', array(
         'default' => '',
         'transport' => 'refresh'
       ));
 
-      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'featured_page_'.$i.'_control', array(
-        'label' => __('Featured Page '.$i.' Text', '18wdwu02customtheme'),
-        'section' => 'custom_theme_featured_page_'.$i,
-        'settings' => 'featured_page_'.$i.'_setting'
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'featured_post_'.$i.'_control', array(
+        'label' => __('Featured post '.$i.' Text', '18wdwu02customtheme'),
+        'section' => 'custom_theme_featured_post_'.$i,
+        'settings' => 'featured_post_'.$i.'_setting',
+        'type' => 'select',
+        'choices' => $options
       )));
     }
 
