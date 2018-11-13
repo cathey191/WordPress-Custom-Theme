@@ -46,6 +46,30 @@
       'settings' => 'footer_text_setting'
     )));
 
+    // Featured Pages
+    $wp_customize->add_panel('Featured_Pages_Panel', array(
+      'title' => __('Featured Pages', '18wdwu02customtheme'),
+      'priority' => 30,
+      'description' => 'This panel will hold the featured pages section'
+    ));
+
+    $wp_customize->add_section('custom_theme_featured_page_one', array(
+      'title' => __('Featured Page 1', '18wdwu02customtheme'),
+      'priority' => 21,
+      'panel' => 'Featured_Pages_Panel'
+    ));
+
+    $wp_customize->add_setting('featured_page_1_setting', array(
+      'default' => '',
+      'transport' => 'refresh'
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'featured_page_1_control', array(
+      'label' => __('Featured Page 1 Text', '18wdwu02customtheme'),
+      'section' => 'custom_theme_featured_page_one',
+      'settings' => 'featured_page_1_setting'
+    )));
+
   }
 
   add_action('customize_register', 'custom_theme_customizer');
