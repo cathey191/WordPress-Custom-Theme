@@ -53,22 +53,24 @@
       'description' => 'This panel will hold the featured pages section'
     ));
 
-    $wp_customize->add_section('custom_theme_featured_page_one', array(
-      'title' => __('Featured Page 1', '18wdwu02customtheme'),
-      'priority' => 21,
-      'panel' => 'Featured_Pages_Panel'
-    ));
+    for ($i=1; $i <= 2 ; $i++) {
+      $wp_customize->add_section('custom_theme_featured_page_'.$i, array(
+        'title' => __('Featured Page '.$i, '18wdwu02customtheme'),
+        'priority' => 21,
+        'panel' => 'Featured_Pages_Panel'
+      ));
 
-    $wp_customize->add_setting('featured_page_1_setting', array(
-      'default' => '',
-      'transport' => 'refresh'
-    ));
+      $wp_customize->add_setting('featured_page_'.$i.'_setting', array(
+        'default' => '',
+        'transport' => 'refresh'
+      ));
 
-    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'featured_page_1_control', array(
-      'label' => __('Featured Page 1 Text', '18wdwu02customtheme'),
-      'section' => 'custom_theme_featured_page_one',
-      'settings' => 'featured_page_1_setting'
-    )));
+      $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'featured_page_'.$i.'_control', array(
+        'label' => __('Featured Page '.$i.' Text', '18wdwu02customtheme'),
+        'section' => 'custom_theme_featured_page_'.$i,
+        'settings' => 'featured_page_'.$i.'_setting'
+      )));
+    }
 
   }
 
