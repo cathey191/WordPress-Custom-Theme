@@ -16,6 +16,25 @@
           'type' => 'number'
         )
       )
+    ),
+    'enquiry' => array(
+      'title' => 'Enquiry Info',
+      'applicableto' => 'enquiry',
+      'location' => 'normal',
+      'priority' => 'high',
+      'fields' => array(
+        'enquiryemail' => array(
+          'title' => 'Email Address',
+          'type' => 'email',
+          'description' => 'The persons email address',
+        ),
+        'enquirycourse' => array(
+          'title' => 'Course',
+          'type' => 'select',
+          'description' => 'Course interested in',
+          'options' => array('Course1', 'Course2', 'Course3')
+        )
+      )
     )
   );
 
@@ -49,6 +68,19 @@
           case 'number':
             $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
             $output .= '<input type="number" name="'.$id.'" class="customField" value="'.$customValues[$id][0].'">';
+            break;
+          case 'email':
+            $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
+            $output .= '<input type="email" name="'.$id.'" class="customField" value="'.$customValues[$id][0].'">';
+            break;
+          case 'select':
+            $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
+            $output .= '<select name="'.$id.'" class="customField" ><option>Choose an Option</option>';
+            $options = $field['options'];
+            foreach ($options as $option) {
+              $output .= '<option value="'.$option.'">'.$option.'</option>';
+            }
+            $output .= '</select>';
             break;
           default:
             $output .= '<label for="'.$id.'">'.$field['title'].'</label>';
