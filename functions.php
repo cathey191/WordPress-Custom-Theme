@@ -88,3 +88,18 @@
 
   require get_parent_theme_file_path('./addons/custom_customizer.php');
   require get_parent_theme_file_path('./addons/custom_fields.php');
+
+  function ajax_load_more_posts_on_front_page(){
+    $args = json_decode( stripslashes($_POST['query']), true );
+    $args['paged'] = $_POST['page'] + 1;
+    $args['post_status'] = 'publish';
+    query_posts($args);
+    if(have_posts()):
+        while (have_posts()): the_post();
+            get_template_part('content', get_post_format());
+        endwhile;
+    endif;
+    die;
+}
+add_action('wp_ajax_loadmore', 'ajax_load_more_posts_on_front_page');
+add_action('wp_ajax_nopriv_loadmore', 'ajax_load_more_posts_on_front_page');
