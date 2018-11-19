@@ -26,70 +26,58 @@
             </div>
             <div class="row">
               <div class="col">
-                    <h1>Home Page</h1>
-                    <?php
-                      $custom_logo = get_theme_mod('custom_logo');
-                      $logo_url = wp_get_attachment_image_url($custom_logo, 'thumbnail');
-                    ?>
-                    <?php if ($custom_logo): ?>
-                      <img src="<?= $logo_url ?>" alt="">
-                    <?php endif; ?>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                    <?php if(have_posts()): ?>
-                        <div class="card-columns">
-                            <?php while(have_posts()): the_post();?>
-                                <!--
-                                    What we are going to do is render out a different card
-                                    depending on what post format our post is.
-                                    What it is going to look for is a file called content-{postformat}.php.
-                                    If it cant't find that file, it will look for content.php.
-                                    It will then paste the contents of that file into this location.
-                                -->
-                                <?php get_template_part('content', get_post_format()); ?>
-
-                            <?php endwhile; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
+                <h1>Home Page</h1>
                 <?php
-                    $total = wp_count_posts()->publish;
-                    $canShow = get_option('posts_per_page');
-                 ?>
-                <?php if($total > $canShow): ?>
-                    <div class="col-12">
-                        <hr>
-                        <button type="button" name="button" class="btn btn-primary btn-block show-more">Show More</button>
-                    </div>
+                  $custom_logo = get_theme_mod('custom_logo');
+                  $logo_url = wp_get_attachment_image_url($custom_logo, 'thumbnail');
+                ?>
+                <?php if ($custom_logo): ?>
+                  <img src="<?= $logo_url ?>" alt="">
                 <?php endif; ?>
-                <!--
-                    Our users don't actually need to include widgets on the theme.
-                    So we need to make sure we wrap it is around an if statement
-                    and if there aren't any widgets, then the design still needs to look good.
-                    In our theme. If there are widgets inside the front_page_sidebar then we want our theme
-                    to use 9 and 3 columns. Otherwise we want the main posts to take up the whole 12.
-                    is_active_sidebar() needs the ID of the registered sidebar. So this must match
-                    what you wrote in functions.php
-                -->
-                <?php if( is_active_sidebar('front_page_sidebar') ): ?>
-                    <div class="col-3">
-                        <div id="frontSidebar">
-                            <!--
-                                To get the sidebar to actually show all the widgets, then say dynamic_sidebar(id)
-                                This will then echo out all the widgets which you have specified in the widgets section.
-                                By default they will be echoed out as li's but if you change the befores and afters then
-                                it would use those instead.
-                                The widgets will use default styles so they won't look good by default.
-                                If you are allowing widgets, you will have to style them yourself in your css.
-                                There is a way on only allowing specific widgets on your site which also might be useful
-                                if you don't want to style every single widget.
-                            -->
-                            <?php dynamic_sidebar('front_page_sidebar'); ?>
-                        </div>
-                    </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <?php if(have_posts()): ?>
+                  <div class="card-columns">
+                    <?php while(have_posts()): the_post();?>
+                      <?php get_template_part('content', get_post_format()); ?>
+                    <?php endwhile; ?>
+                  </div>
                 <?php endif; ?>
+              </div>
+              <?php
+                $total = wp_count_posts()->publish;
+                $canShow = get_option('posts_per_page');
+              ?>
+              <?php if($total > $canShow): ?>
+                <div class="col-12">
+                  <hr>
+                  <?php
+                    $paginate_args = array(
+                      'type' => 'array'
+                    );
+                    $all_pages = paginate_links($paginate_args);
+                  ?>
+                  <nav>
+                    <ul class="pagination">
+                      <?php foreach ($all_pages as $page): ?>
+                        <li class="page-item">
+                          <?php echo str_replace('page-numbers', 'page-link', $page); ?>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                  </nav>
+                  <button type="button" name="button" class="btn btn-primary btn-block show-more">Show More</button>
+                </div>
+              <?php endif; ?>
+              <?php if( is_active_sidebar('front_page_sidebar') ): ?>
+                <div class="col-3">
+                  <div id="frontSidebar">
+                      <?php dynamic_sidebar('front_page_sidebar'); ?>
+                  </div>
+                </div>
+              <?php endif; ?>
             </div>
         </div>
 <?php get_footer(); ?>
